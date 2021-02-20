@@ -222,7 +222,7 @@ MonoBehaviour:
   MoveSpeed: 1
   _rb: {fileID: 62744507}
   Input: {x: 0, y: 0}
-  CamBrain: {fileID: 891839375}
+  CamBrain: {fileID: 0}
 --- !u!114 &62744505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -310,7 +310,7 @@ MonoBehaviour:
   m_Follow: {fileID: 62744503}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 5.328125
+    OrthographicSize: 4.92
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -478,7 +478,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 4.92
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -502,7 +502,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 891839370}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: -2.594207, y: -1.7440999, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -544,8 +544,8 @@ MonoBehaviour:
   m_ShowCameraFrustum: 1
   m_IgnoreTimeScale: 0
   m_WorldUpOverride: {fileID: 0}
-  m_UpdateMethod: 1
-  m_BlendUpdateMethod: 0
+  m_UpdateMethod: 0
+  m_BlendUpdateMethod: 1
   m_DefaultBlend:
     m_Style: 1
     m_Time: 2

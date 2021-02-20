@@ -26,10 +26,6 @@ namespace RedstoneHallows
         }
 
 
-        private float Round(float x)
-        {
-            return Mathf.Round(x * 64 ) / 64;
-        }
 
         private void UpdateMotor()
         {
@@ -54,16 +50,19 @@ namespace RedstoneHallows
 
         private void FixedUpdate()
         {
-            _rb.MovePosition(transform.position + (Vector3)(Input * MoveSpeed) * Time.fixedDeltaTime);
+            //_rb.MovePosition(transform.position + (Vector3)(Input * MoveSpeed) * Time.fixedDeltaTime);
+            Vector2 targetPosition = _rb.position + Input * (StopMovement ? 0 : MoveSpeed) * Time.fixedDeltaTime;
+            _rb.MovePosition(targetPosition);
+            //Vector2 targetVelocity = (targetPosition - (Vector2)transform.position + ForceDirection) / Time.fixedDeltaTime;
+            //_rb.velocity = targetVelocity;
             if (CamBrain)
                 CamBrain.ManualUpdate();
-            //_rb.MovePosition(_rb.position + Input * MoveSpeed * Time.fixedDeltaTime);
-
         }
 
         private void Awake()
         {
             //_rb.AddForce(new Vector2(2f,0), ForceMode2D.Impulse);
+            //FollowPlayer.Instance.MyPlayer = transform;
         }
     }
 }
