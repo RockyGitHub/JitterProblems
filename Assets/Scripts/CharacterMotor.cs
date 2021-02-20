@@ -25,6 +25,7 @@ namespace RedstoneHallows
             ForceDirection += force;
         }
 
+        
 
 
         private void UpdateMotor()
@@ -35,6 +36,8 @@ namespace RedstoneHallows
 
             Vector2 targetPosition = (Vector2)transform.position + Input * (StopMovement ? 0 : MoveSpeed) * Time.deltaTime;
             transform.position = targetPosition;
+            if (CamBrain)
+                CamBrain.ManualUpdate();
         }
 
         private void FixedUpdateMotor()
