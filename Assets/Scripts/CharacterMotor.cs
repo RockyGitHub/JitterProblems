@@ -29,26 +29,15 @@ namespace RedstoneHallows
 
         private void UpdateMotor()
         {
+            //Vector2 targetPosition = (Vector2)transform.position + Input * (StopMovement ? 0 : MoveSpeed) * Time.deltaTime;
+            //Vector2 targetVelocity = (targetPosition - (Vector2)transform.position + ForceDirection) / Time.deltaTime;
+            //transform.Translate(targetVelocity);
+
             Vector2 targetPosition = (Vector2)transform.position + Input * (StopMovement ? 0 : MoveSpeed) * Time.deltaTime;
-            Vector2 targetVelocity = (targetPosition - (Vector2)transform.position + ForceDirection) / Time.deltaTime;
-            transform.Translate(targetVelocity);
-            //_rb.velocity = new Vector2(targetVelocity.x,targetVelocity.y);
-
-
-            //_rb.MovePosition(transform.position + (Vector3)(Input * MoveSpeed) * Time.deltaTime);
-            //var newPosition = transform.position + (Vector3)(Input * MoveSpeed) * Time.deltaTime;
-            //newPosition = new Vector3(Round(newPosition.x), Round(newPosition.y));
-            //Debug.Log(transform.p);
-            //transform.position = newPosition;
+            transform.position = targetPosition;
         }
 
-        private void Update()
-        {
-            //UpdateMotor();
-
-        }
-
-        private void FixedUpdate()
+        private void FixedUpdateMotor()
         {
             //_rb.MovePosition(transform.position + (Vector3)(Input * MoveSpeed) * Time.fixedDeltaTime);
             Vector2 targetPosition = _rb.position + Input * (StopMovement ? 0 : MoveSpeed) * Time.fixedDeltaTime;
@@ -57,6 +46,17 @@ namespace RedstoneHallows
             //_rb.velocity = targetVelocity;
             if (CamBrain)
                 CamBrain.ManualUpdate();
+        }
+
+        private void Update()
+        {
+            UpdateMotor();
+
+        }
+
+        private void FixedUpdate()
+        {
+            //FixedUpdateMotor();
         }
 
         private void Awake()
