@@ -41,9 +41,9 @@ namespace RedstoneHallows
         {
             //_rb.MovePosition(transform.position + (Vector3)(Input * MoveSpeed) * Time.fixedDeltaTime);
             Vector2 targetPosition = _rb.position + Input * (StopMovement ? 0 : MoveSpeed) * Time.fixedDeltaTime;
-            _rb.MovePosition(targetPosition);
-            //Vector2 targetVelocity = (targetPosition - (Vector2)transform.position + ForceDirection) / Time.fixedDeltaTime;
-            //_rb.velocity = targetVelocity;
+            //_rb.MovePosition(targetPosition);
+            Vector2 targetVelocity = (targetPosition - (Vector2)transform.position + ForceDirection) / Time.fixedDeltaTime;
+            _rb.velocity = Input * MoveSpeed;
             if (CamBrain)
                 CamBrain.ManualUpdate();
         }

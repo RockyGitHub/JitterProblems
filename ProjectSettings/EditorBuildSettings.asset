@@ -8,4 +8,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/JitterScene.unity
     guid: ea29a7b4909231844973060064106760
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: c3940ab26f8df4c40ac9fc602291349c,
+      type: 2}
