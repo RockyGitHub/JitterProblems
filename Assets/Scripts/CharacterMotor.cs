@@ -25,33 +25,25 @@ namespace RedstoneHallows
             ForceDirection += force;
         }
 
-
-
-        private void UpdateMotor()
+        private Vector2 PixelPerfectClamp(Vector2 moveVector, float pixelsPerUnit)
         {
-            //Vector2 targetPosition = (Vector2)transform.position + Input * (StopMovement ? 0 : MoveSpeed) * Time.deltaTime;
-            //Vector2 targetVelocity = (targetPosition - (Vector2)transform.position + ForceDirection) / Time.deltaTime;
-            //transform.Translate(targetVelocity);
+            Vector2 vectorInPixels = new Vector2(
+                Mathf.RoundToInt(moveVector.x * pixelsPerUnit),
+                Mathf.RoundToInt(moveVector.y * pixelsPerUnit));
 
-            Vector2 targetPosition = (Vector2)transform.position + Input * (StopMovement ? 0 : MoveSpeed) * Time.deltaTime;
-            transform.position = targetPosition;
+            Debug.Log("Clamp X: " + vectorInPixels.x + " into " + vectorInPixels.x / pixelsPerUnit);
+            Debug.Log("Clamp Y: " + vectorInPixels.y + " into " + vectorInPixels.y / pixelsPerUnit);
+            return vectorInPixels / pixelsPerUnit;
         }
 
         private void FixedUpdateMotor()
         {
-            //_rb.MovePosition(transform.position + (Vector3)(Input * MoveSpeed) * Time.fixedDeltaTime);
-            //Vector2 targetPosition = _rb.position + Input * (StopMovement ? 0 : MoveSpeed) * Time.fixedDeltaTime;
-            //_rb.MovePosition(targetPosition);
-            //Vector2 targetVelocity = (targetPosition - (Vector2)transform.position + ForceDirection) / Time.fixedDeltaTime;
-            _rb.velocity = Input * MoveSpeed;
+            //_rb.velocity = Input * MoveSpeed;
+            var newPosition = PixelPerfectClamp(_rb.position + Input * MoveSpeed * Time.fixedDeltaTime,64);
+            _rb.MovePosition(newPosition);
+
             if (CamBrain)
                 CamBrain.ManualUpdate();
-        }
-
-        private void Update()
-        {
-            //UpdateMotor();
-
         }
 
         private void FixedUpdate()
