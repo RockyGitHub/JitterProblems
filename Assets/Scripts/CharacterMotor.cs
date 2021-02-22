@@ -39,7 +39,12 @@ namespace RedstoneHallows
         private void FixedUpdateMotor()
         {
             //_rb.velocity = Input * MoveSpeed;
-            var newPosition = PixelPerfectClamp(_rb.position + Input * MoveSpeed * Time.fixedDeltaTime,64);
+            //var newPosition = PixelPerfectClamp(_rb.position + Input * MoveSpeed * Time.fixedDeltaTime,64);
+            //_rb.MovePosition(newPosition);
+
+            var newPosition = _rb.position + Input * MoveSpeed * Time.fixedDeltaTime;
+            if (Input == Vector2.zero)
+                newPosition = PixelPerfectClamp(newPosition, 64);
             _rb.MovePosition(newPosition);
 
             if (CamBrain)
