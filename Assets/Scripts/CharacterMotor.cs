@@ -43,12 +43,17 @@ namespace RedstoneHallows
             //_rb.MovePosition(newPosition);
 
             var newPosition = _rb.position + Input * MoveSpeed * Time.fixedDeltaTime;
-            if (Input == Vector2.zero)
+            if (true)
                 newPosition = PixelPerfectClamp(newPosition, 64);
             _rb.MovePosition(newPosition);
 
             if (CamBrain)
                 CamBrain.ManualUpdate();
+        }
+
+        private void Update()
+        {
+            //_rb.position = PixelPerfectClamp(_rb.position,32);
         }
 
         private void FixedUpdate()
