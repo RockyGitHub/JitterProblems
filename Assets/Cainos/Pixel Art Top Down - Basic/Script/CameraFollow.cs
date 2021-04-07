@@ -21,12 +21,13 @@ namespace Cainos.PixelArtTopDown_Basic
             offset = transform.position - target.position;
         }
 
-        private void Update()
+        private void LateUpdate ()
         {
             if (target == null) return;
 
             targetPos = target.position + offset;
             transform.position = Vector3.Lerp(transform.position, targetPos, lerpSpeed * Time.deltaTime);
+            //transform.position = transform.position.PixelPerfect();
         }
 
     }

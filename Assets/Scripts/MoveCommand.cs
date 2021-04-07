@@ -9,7 +9,8 @@ namespace RedstoneHallows.Commands
 
         public void LocalExecute(Vector2 moveVector)
         {
-            moveVector = new Vector2(moveVector.x, moveVector.y / 2).normalized;
+            if (Mathf.Abs(moveVector.x) == 1 && Mathf.Abs(moveVector.y) == 1)
+                moveVector.y /= 2;
             _motor.Input = moveVector;
         }
 

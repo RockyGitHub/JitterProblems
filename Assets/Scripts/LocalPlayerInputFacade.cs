@@ -9,18 +9,18 @@ namespace RedstoneHallows
     {
 
         [SerializeField] MoveCommand _moveCommand;
-        private PlayerInputActions _inputMap;
+        private JitterProblems _inputMap;
 
         private void Awake()
         {
-            _inputMap = new PlayerInputActions();
+            _inputMap = new JitterProblems();
             SubscribeToActions();
         }
 
 
         public void OnMoveAction(InputAction.CallbackContext context)
         {
-            var vectorVal = context.ReadValue<Vector2>().normalized;
+            var vectorVal = context.ReadValue<Vector2>();
             _moveCommand.LocalExecute(vectorVal);
         }
 
@@ -36,15 +36,15 @@ namespace RedstoneHallows
             _inputMap.Enable();
 
             // Subscriptions
-            _inputMap.General.Move.performed += OnMoveAction;
-            _inputMap.General.Move.canceled += OnMoveAction;
+            _inputMap.Player.Move.performed += OnMoveAction;
+            _inputMap.Player.Move.canceled += OnMoveAction;
         }
 
         private void UnsubscribeFromActions()
         {
             // Unsubscriptions
-            _inputMap.General.Move.performed -= OnMoveAction;
-            _inputMap.General.Move.canceled -= OnMoveAction;
+            _inputMap.Player.Move.performed -= OnMoveAction;
+            _inputMap.Player.Move.canceled -= OnMoveAction;
 
             // Disable must come after unsubscribing
             _inputMap.Disable();
